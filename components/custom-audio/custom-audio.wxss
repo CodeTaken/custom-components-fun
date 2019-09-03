@@ -1,0 +1,166 @@
+.myAudio{
+  text-align:center;
+  width:650rpx;
+  height:150rpx;
+  display:flex;
+  border:1px solid #eaeaea;
+  justify-content:center;
+  align-items:center;
+  margin:20rpx auto;
+  background:#fff;
+}
+.audioPlay {
+  width:140rpx;
+  height:150rpx;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+}
+.audioContent {
+  flex:1;
+  max-width:510rpx;
+  font-size:26rpx;
+  text-align:left;
+  box-sizing:border-box;
+  padding-right:24rpx;
+  padding-left:10rpx;
+  background:#fff;
+}
+.myAudioMy .audioTitle {
+  padding-right:20rpx;
+  box-sizing:border-box;
+  padding-left:12rpx;
+  height:45rpx;
+}
+
+
+.progressBar{
+  width: 100%;
+  margin: 12rpx auto;
+}
+.progressBar-line{
+  width: 100%;
+  background: #ddd;
+  height:16rpx;
+  position: relative;
+}
+.progress-Dot{
+  position: absolute;
+  width: 20rpx;
+  height: 20rpx;
+  background: #fff;
+  border:2px solid #ddd;
+  border-radius: 50%;
+  top: 50%;
+  left: 0;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}
+.progressted{
+  background: #f80000;
+  position: absolute;
+  width: 10%;
+  height: 100%;
+  top: 0;
+  left: 0;
+}
+
+.myAudio .slider{
+  width:100%;
+  height:5rpx;
+  background:#eaeaea;
+  margin:0rpx auto;
+  padding:12rpx 0;
+  position: relative;
+}
+.circleSlide{
+  width:20rpx;
+  height:20rpx;
+  background:#fff;
+  border:1px solid #ddd;
+  border-radius: 50%;
+  position: absolute;
+  top:50%;
+  left:0;
+  text-shadow: 5rpx 0 0 #ddd;
+  transform: translateY(-50%);
+}
+
+
+
+
+
+.slider slider{
+  width:94%;
+  margin-left:15rpx;
+  margin-right:15rpx;
+  margin-top:0rpx;
+  margin-bottom:0rpx;
+}
+
+
+.myAudio .time{
+  display: flex;
+  justify-content: space-between;
+  font-size:24rpx;
+  height:30rpx;
+  color:#dfdbdd;
+  padding-right:20rpx;
+  box-sizing: border-box;
+  background:#fff;
+   padding-left:12rpx;
+}
+.myAudio .audioTitle{
+  padding-right:20rpx;
+  box-sizing: border-box;
+  padding-left:12rpx;
+}
+.myAudioMy .time {
+  display:flex;
+  justify-content:space-between;
+  font-size:24rpx;
+  height:30rpx;
+  color:#dfdbdd;
+  padding-right:20rpx;
+  box-sizing:border-box;
+  background:#fff;
+  padding-left:12rpx;
+}
+.me_contips{
+  max-width:80rpx;
+  height:80rpx;
+}
+.ellipsis{
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
+
+
+
+@font-face {font-family: "iconfont";
+  src: url('iconfont.eot?t=1567526609372'); /* IE9 */
+  src: url('iconfont.eot?t=1567526609372#iefix') format('embedded-opentype'), /* IE6-IE8 */
+  url('data:application/x-font-woff2;charset=utf-8;base64,d09GMgABAAAAAAMwAAsAAAAABygAAALkAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHEIGVgCDBgqCDIIQATYCJAMMCwgABCAFhG0HOhtaBsgekiQl6lZAcWJTXDAYKIJoWaue6Q2fovtXIcqXIROyilGhXqJ4iQKLQ2FfSDAWYbIR939r7eNaGaydWEI9iaXVP7s++2YHa57FQiddvVIQT3AZi+QbOteV8MznFaaROOAokMLEwu0rQfc/l9NrAQUyP1Auc0yso16AcUABjb3ICiQgz4F46zI3Exi2KKLoZGphGSolo1cg3lmGApUpt5RcrBfakokpPoNGXz6iEcAn//vxH1JRSdFUxsA7byd1GPkFf6klH449j10EcMYzgptGxRaQxNPS8H0lgiOWGBaX1qe2Uihj+QoFfLYqbVf6xytEy8geBWuIFH4V2SK+RMUVCqigRYdrwDlNmE1MdXQ0E42nlbc79/7gX2/syzUYtvJvC/cyMa+zVlOGH0H4IsMsYkDAoqTuAHnl6kvr5ezy5bf268DnQY19TDWE/GEqAZyiOCF9U7c8hiBkmeDTySBzdnJ28VAICh3Z+vomF6bi9QVFQVgHvsB5LjGd8mpZllACn2KCFTMg8PCE+f/LOB6nM+Nf+mVmo7eiqeavpvMcYJCrbckVP5rHXzH1A37j+t2BRalh57+vSfDzMvsI1yCXoL1Wf3qW4HVzWpalyjM0NWW2zdYt1UbCqQAmbzMAwz7ts790rnWQ0Kc4HBSdBah6S5gkbEFjxDa0evswbNP09BEzuBKRQ9hwTCBMykIx7jtUk24xSfiAxrw/aE1GCQy7GzMLjlgJq/qYoyJQJ+ousTTmU0snqoPcRTQ2XYUneT5pFXlo+UgylsjGptFHPsaQcMtICUEJ5cwjU2Q7dF1GAs5s1ETMFCLoi8dp2ZtiGvOg2jEOKQSkI1S7CIuG8VG3ulCd+/wiZNjkUvAaVIV+FeJCVv1EUkyiBWZa7LdCXcs1oS2GFEGgCIpjPMQUMSLXDDNEUN7OhjRCjNkjGOgTpyrRtuLY/FLv+dbAMKNZjRI1UvdeuYxE3yh/yajiqQAA') format('woff2'),
+  url('iconfont.woff?t=1567526609372') format('woff'),
+  url('iconfont.ttf?t=1567526609372') format('truetype'), /* chrome, firefox, opera, Safari, Android, iOS 4.2+ */
+  url('iconfont.svg?t=1567526609372#iconfont') format('svg'); /* iOS 4.1- */
+}
+.iconfont {
+  font-family: "iconfont" !important;
+  font-size:40px;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+.icon-zanting:before {
+  content: "\e601";
+}
+.icon-bofang:before {
+  content: "\e662";
+}
+.audioIcon.iconfont{
+  font-size:40px;
+  color:#f80000;
+}

@@ -1,0 +1,24 @@
+<custom-audio>
+  <view class="myAudio">
+        <view class="audioPlay" bindtap='_audioPlay'>
+          <!-- <image mode='widthFix' src='{{!customAudio.isPlayAudio?customAudio.audioPauseIcon:customAudio.audioPlayIcon}}' style='width:76rpx;' class='me_contips'></image> -->
+          <view class="audioIcon iconfont {{!customAudio.isPlayAudio?'icon-bofang':'icon-zanting'}}"></view>
+        </view>
+        <view class="audioContent">
+            <view class="audioTitle ellipsis">{{audioName}}</view>
+            <view class="progressBar">
+              <view class="progressBar-line" bindtouchstart="_progressStart" bindtouchmove="_progressMove" bindtouchend="_progressEnd">
+                <view class="progressted" id="progressted" style="width:{{customAudio.percentage}}"></view>
+                <view class="progress-Dot" style="left:{{customAudio.percentage}}"></view>
+              </view>
+            </view>
+            <!-- <view class="slider">
+                 <slider disabled="true" bindchange='sliderChange' activeColor='#0f206c' block-size="12" max='{{customAudio.audioDuration}}' value='{{customAudio.audioTime}}' />
+            </view> -->
+            <view class='time'>
+              <text>{{customAudio.currentTimePase}}</text>
+              <text>{{customAudio.durationPase}}</text>
+            </view>
+        </view>
+    </view>
+</custom-audio>

@@ -1,0 +1,4 @@
+ <custom-audio audio-status="{{audio.status}}" audio-play="{{audio.palyStatus}}" audio-url="{{audio.url}}" audio-name='{{audio.name}}'   bind:getNowData='getCurrentTextAction'></custom-audio>
+
+
+

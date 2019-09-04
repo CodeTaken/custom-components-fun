@@ -34,7 +34,7 @@ Page({
     setTimeout(()=>{
       this.setData({
         'audio.status':false,
-        'audio.url':'https://netsuite2018.blob.core.chinacloudapi.cn/resource/Audio/400e9a8b-d468-4457-8630-72e7467834f8.mp3',
+        'audio.url':'https://netsuite2018.blob.core.chinacloudapi.cn/resource/Audio/4a6fdb2d-5d5d-4ec8-b301-769dc76929bc.mp3',
         'audio.name':'测试音频',
         'audio.palyStatus':true
       })

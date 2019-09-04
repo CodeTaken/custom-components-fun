@@ -6,7 +6,7 @@
         </view>
         <view class="audioContent">
             <view class="audioTitle ellipsis">{{audioName}}</view>
-            <view class="progressBar">
+            <view class="progressBar" id="progressBar">
               <view class="progressBar-line" bindtouchstart="_progressStart" bindtouchmove="_progressMove" bindtouchend="_progressEnd">
                 <view class="progressted" id="progressted" style="width:{{customAudio.percentage}}"></view>
                 <view class="progress-Dot" style="left:{{customAudio.percentage}}"></view>

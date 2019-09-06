@@ -17,13 +17,28 @@ Component({
         }
        }
     },
-    audioPlay:{  // 是否自动播放
+    audioAutoplay:{  // 是否自动播放
       type: String,
       value: false,
       observer: function _observerTitle(newVal, oldVal) { 
-        //if (newVal) this.innerAudioContext.autoplay=true
+        if (newVal) this.innerAudioContext.autoplay=true
       }
     },
+    audioLoop: {  // 是否循环播放
+      type: String,
+      value: false,
+      observer: function _observerTitle(newVal, oldVal) {
+        if (newVal) this.innerAudioContext.loop=true
+      }
+    },
+    audioDrag: {  // 是否支持进度条拖动
+      type: String,
+      value: false,
+      observer: function _observerTitle(newVal, oldVal) {
+        
+      }
+    },
+    
     audioStatus: {
       type: String,
       value: '',
@@ -87,6 +102,8 @@ Component({
       }).exec()
     },200)
     
+    this.getAudioState()
+    console.log(this);
   },
 
   // 生命周期函数，可以为函数，或一个在methods段中定义的方法名
@@ -125,13 +142,14 @@ Component({
       })
       // 监听音频播放进度更新事件
       that.innerAudioContext.onTimeUpdate(() => {
-        console.log(that.innerAudioContext.currentTime);
+        //console.log(that.innerAudioContext.currentTime);
         let _currentTime = that.innerAudioContext.currentTime
         let min = (parseInt(_currentTime / 60) < that.data.fixValue) ? '0' + parseInt(_currentTime / 60) : parseInt(_currentTime / 60)
         let sec = (parseInt(_currentTime % 60) < that.data.fixValue) ? '0' + parseInt(_currentTime % 60) : parseInt(_currentTime % 60)
         // 如果 当前时间大于总时间 ？
         let _percentage = (_currentTime / this.data.customAudio.duration)*100
-        console.log(_percentage);
+        //console.log(parseInt(_percentage));
+        _percentage = !parseInt(_percentage) ? 0 : _percentage
         
         // 如果用户拖动时，不更新进度条
         if (this.data.touch.init){
@@ -151,12 +169,16 @@ Component({
       })
       // 监听音频播放结束事件
       that.innerAudioContext.onEnded(() => {
-        // 
-        that.setData({
-          'customAudio.isPlayAudio': false,
-          'customAudio.audioTime': 0,
-          'customAudio.showTime1': `00:00`,
-        })
+        // 判断是否循环播放，否的话将状态重置为初始状态。
+        if (!this.innerAudioContext.loop){
+          console.log('监听音频播放结束事件');
+          that.setData({
+            'customAudio.isPlayAudio': false,
+            'customAudio.currentTime': 0,
+            'customAudio.currentTimePase': `00:00`,
+            'customAudio.percentage': `0%`
+          })
+        }
       })
 
 
@@ -186,6 +208,7 @@ Component({
     },
 
     _progressStart(e){
+      if (!this.data.audioDrag) return
       let that = this
       let _startX = e.touches[0].pageX
       // 进度条的 width 为异步操作。解决方法：间接获取元素当前的宽度，通过百分比来获取
@@ -205,6 +228,7 @@ Component({
     },
     _progressMove(e){
       //console.log(this.data.touch);
+      if (!this.data.audioDrag) return
       if (!this.data.touch.init) return
       const moveDistance = e.touches[0].pageX - this.data.touch.startX   // 移动的偏移量
       const offsetWidth = Math.min(Math.max(0, moveDistance + this.data.touch.left), this.data.touch.clientWidth)
@@ -217,18 +241,35 @@ Component({
       })
     },
     _progressEnd(e){
-      console.log(this.data.customAudio.percentage);
+      if (!this.data.audioDrag) return
       // // 设置跳转进度，
       const seekTime = (this.data.customAudio.duration * parseFloat(this.data.customAudio.percentage))/100
       if (!seekTime) return
-      console.log('seekTime' + seekTime);
+      //console.log('seekTime' + seekTime);
       // 播放时调整进度没反应
       this.innerAudioContext.seek(seekTime)
       this.innerAudioContext.play()
-      console.log(this.innerAudioContext);
+      //console.log(this.innerAudioContext);
       this.setData({
         'touch.init': false,
       })
+    },
+
+    getAudioState(){
+      let that = this;
+      let _playStatus = that.innerAudioContext.paused
+      let options = {
+        innerAudioContext: that.data.innerAudioContext,
+        duration: that.data.customAudio.duration,
+        playStatus: _playStatus,
+        autoPlay: false,
+        loop: false,
+      }
+      this.triggerEvent('audioStatus', options)
+    },
+    handleIndexFunction(){
+      console.log('handleIndexFunction');
+      this.triggerEvent('indexFunction')
     }
   },
   observers: {
@@ -238,11 +279,6 @@ Component({
 
 
 
-/*
-1、制作不可快进的简单音频组件
-  >1.得到外部传入的 url, 获取该音频的 总时长 duration
-offsetWidth 的值在 负数中取最大的0，正数中取最小的为整个盒子的宽度
-*/
 
 /*
 问题：
@@ -251,4 +287,22 @@ offsetWidth 的值在 负数中取最大的0，正数中取最小的为整个盒
   3、加载中事件的处理
   4、使用字体文件图标，如何传入
   5、实时获取进度条的方法是异步操作，无法获取到宽度
+ */
+
+/* 
+扩展：
+  1、向外暴露音频的各项状态，如：音频的总时间、当前播放时间、当前状态、是否循环播放、是否自动播放，（播放时间记时）
+  2、向内传递接收函数，方便内部调用     
+  3、扩展自动播放，循环播放            已扩展
+  4、扩展是否能快进、后退的开关        已扩展
+  5、扩展播放、暂停的图标及图片
+
+*/
+
+/*
+子组件向父组件传值
+  1、父组件：this.selectComponent('#myAudio')获取子组件所有的数据
+  2、子组件绑定一个函数，通过 triggerEvent 传递一个事件给父组件，父组件接受事件获取数据
+父组件向自组件传值
+
  */

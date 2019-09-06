@@ -41,8 +41,10 @@
 .progressBar-line{
   width: 100%;
   background: #ddd;
-  height:16rpx;
+  height:8rpx;
   position: relative;
+  border-top:4rpx solid #fff;
+  border-bottom:4rpx solid #fff;
 }
 .progress-Dot{
   position: absolute;
@@ -106,15 +108,11 @@
   font-size:24rpx;
   height:30rpx;
   color:#dfdbdd;
-  padding-right:20rpx;
   box-sizing: border-box;
   background:#fff;
-   padding-left:12rpx;
 }
 .myAudio .audioTitle{
-  padding-right:20rpx;
   box-sizing: border-box;
-  padding-left:12rpx;
 }
 .myAudioMy .time {
   display:flex;

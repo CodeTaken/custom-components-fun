@@ -1,4 +1,7 @@
- <custom-audio audio-status="{{audio.status}}" audio-play="{{audio.palyStatus}}" audio-url="{{audio.url}}" audio-name='{{audio.name}}'   bind:getNowData='getCurrentTextAction'></custom-audio>
+ <custom-audio id="myAudio" audio-status="{{audio.status}}" audio-url="{{audio.url}}" audio-name='{{audio.name}}'
+  audio-drag bindaudioStatus='outsideFun' fixFun="{{fixFun()}}" bind:indexFunction="fixFun"></custom-audio>
 
 
-
+<!-- 
+audio-autoplay 自动播放  audio-loop 循环播放  audio-drag 支持进度条拖动
+ -->

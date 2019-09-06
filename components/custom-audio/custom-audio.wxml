@@ -21,4 +21,6 @@
             </view>
         </view>
     </view>
+    <!-- <view bindtap="getAudioState">bindtap="_incrementCounter"</view> -->
+    <!-- <view bindtap="handleIndexFunction">bindtap="handleIndexFunction"</view> -->
 </custom-audio>

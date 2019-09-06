@@ -39,8 +39,20 @@ Page({
         'audio.palyStatus':true
       })
     },1000)
-  },
 
+    // 获取组件内部所有数据及方法
+    var component = this.selectComponent('#myAudio');
+    //console.log(component);
+
+   //this.outsideFun(e)
+  },
+  outsideFun(e){
+    console.log('我是外部的方法，可以获取到组件内部传递的数据！');
+    console.log(e);
+  },
+  fixFun(){
+    console.log('我是外部的函数，需要传递到自组件中。');
+  },
   /**
    * 生命周期函数--监听页面隐藏
    */

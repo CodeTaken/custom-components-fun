@@ -38,8 +38,23 @@ Component({
         
       }
     },
-    
-    audioStatus: {
+    audioPlayImg:{  // 播放暂停图片
+      type: String,
+      value: false,
+      observer: function _observerTitle(newVal, oldVal) {
+        let status = newVal ? true:false
+        this.setData({ 'audioPlayImgShow': status })
+      }
+    },
+    audioPauseImg:{ //播放暂停图片
+      type: String,
+      value: false,
+      observer: function _observerTitle(newVal, oldVal) {
+        let status = newVal ? true : false
+        this.setData({ 'audioPlayImgShow': status })
+       }
+    },
+    audioStatus: { // 扩展组件，未使用
       type: String,
       value: '',
       observer: function _observerTitle(newVal, oldVal) { }
@@ -47,8 +62,8 @@ Component({
   },
   data: {
     fixValue:10,  // 用于判断是否显示 05
-    code: '',
-    innerAudioContext: '',
+    innerAudioContext: '',   // 音频对象
+    audioPlayImgShow:false,  // 是否展示外部传的图片
     touch:{
       init:false,  // 是否触摸开始
     },
@@ -59,18 +74,6 @@ Component({
       currentTime:0,  //当前播放时间
       currentTimePase:'00:00',  //显示的播放时间
       percentage:0,   // 滑块的进度
-
-
-      durationIntval: null,
-      
-      audioSeek: 0,
-      audioDuration: 0,     // 真是播放时间
-      showTime1: '00:00',   //初始播放时间
-      showTime2: '00:00',
-      audioTime: 0,         //音频的总时间
-      audioPauseIcon: 'https://hologic.arcdmi.com/api/Images/playIcon2.png',  //按钮
-      audioPlayIcon: 'https://hologic.arcdmi.com/api/Images/pauseIcon.png',
-      show: true,
     },
   }, // 私有数据，可用于模版渲染
 
@@ -103,9 +106,8 @@ Component({
     },200)
     
     this.getAudioState()
-    console.log(this);
+    //console.log(this);
   },
-
   // 生命周期函数，可以为函数，或一个在methods段中定义的方法名
   attached: function () { }, // 此处attached的声明会被lifetimes字段中的声明覆盖
   ready: function () { },
@@ -113,7 +115,6 @@ Component({
     // 组件所在页面的生命周期函数
     show: function () { },
   },
-
   methods: {
     _Init(){
       let that = this;
@@ -171,7 +172,7 @@ Component({
       that.innerAudioContext.onEnded(() => {
         // 判断是否循环播放，否的话将状态重置为初始状态。
         if (!this.innerAudioContext.loop){
-          console.log('监听音频播放结束事件');
+          //console.log('监听音频播放结束事件');
           that.setData({
             'customAudio.isPlayAudio': false,
             'customAudio.currentTime': 0,
@@ -180,12 +181,6 @@ Component({
           })
         }
       })
-
-
-
-
-
-
       // 监听音频加载中事件
       that.innerAudioContext.onWaiting(()=>{
         console.log('onWaiting');
@@ -195,7 +190,6 @@ Component({
       that.innerAudioContext.onError(() => {
         throw new Error("音频加载错误！");
       })
-      
     },
     _audioPlay() {
       if (!this.innerAudioContext) return 
@@ -206,7 +200,6 @@ Component({
         this.innerAudioContext.pause()
       }
     },
-
     _progressStart(e){
       if (!this.data.audioDrag) return
       let that = this
@@ -291,11 +284,12 @@ Component({
 
 /* 
 扩展：
-  1、向外暴露音频的各项状态，如：音频的总时间、当前播放时间、当前状态、是否循环播放、是否自动播放，（播放时间记时）
-  2、向内传递接收函数，方便内部调用     
+  1、向外暴露音频的各项状态，如：音频的总时间、当前播放时间、当前状态、是否循环播放、是否自动播放，（播放时间记时） 已扩展
+  2、向内传递接收函数，方便内部调用     （不能自动调用，必须手动触发,）
   3、扩展自动播放，循环播放            已扩展
   4、扩展是否能快进、后退的开关        已扩展
-  5、扩展播放、暂停的图标及图片
+  5、扩展播放、暂停的图标及图片        已扩展
+  6、扩展播放计时，记录播放真正时间     
 
 */
 

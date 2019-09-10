@@ -1,8 +1,10 @@
 <custom-audio>
   <view class="myAudio">
         <view class="audioPlay" bindtap='_audioPlay'>
-          <!-- <image mode='widthFix' src='{{!customAudio.isPlayAudio?customAudio.audioPauseIcon:customAudio.audioPlayIcon}}' style='width:76rpx;' class='me_contips'></image> -->
-          <view class="audioIcon iconfont {{!customAudio.isPlayAudio?'icon-bofang':'icon-zanting'}}"></view>
+        <block wx:if="{{audioPlayImgShow}}"> <image mode='widthFix' src='{{customAudio.isPlayAudio?audioPlayImg:audioPauseImg}}' style='width:76rpx;' class='me_contips'></image></block>
+        <block wx:else>
+          <view class="audioIcon iconfont {{customAudio.isPlayAudio?'icon-zanting':'icon-bofang'}}"></view>
+        </block>
         </view>
         <view class="audioContent">
             <view class="audioTitle ellipsis">{{audioName}}</view>

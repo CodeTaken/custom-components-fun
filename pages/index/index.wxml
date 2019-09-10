@@ -1,7 +1,8 @@
  <custom-audio id="myAudio" audio-status="{{audio.status}}" audio-url="{{audio.url}}" audio-name='{{audio.name}}'
-  audio-drag bindaudioStatus='outsideFun' fixFun="{{fixFun()}}" bind:indexFunction="fixFun"></custom-audio>
+  audio-drag audio-playImg="" audio-pauseImg="https://netsutie-miniapp.oraclesocial.com/mini-test/img/pauseIcon.png" bindaudioStatus='outsideFun' fixFun="{{fixFun()}}" bind:indexFunction="fixFun"></custom-audio>
 
 
 <!-- 
-audio-autoplay 自动播放  audio-loop 循环播放  audio-drag 支持进度条拖动
+audio-autoplay 自动播放  audio-loop 循环播放  audio-drag 支持进度条拖动 
+audio-pauseImg audio-playImg 必须同时有值   playIcon
  -->

@@ -1,5 +1,5 @@
-// pages/home/home.js
-Page({
+const app = getApp()
+app.Base({
 
   /**
    * 页面的初始数据
@@ -12,7 +12,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+      console.log('HOME >>>>>');
   },
 
   /**
@@ -26,7 +26,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    console.log('HOME >>>>>');
   },
 
   /**

@@ -1,4 +1,6 @@
 //app.js
+const InitPage = require('/utils/InitPage.js')
+
 App({
   onLaunch: function () {
     // 展示本地存储能力
@@ -35,5 +37,10 @@ App({
   },
   globalData: {
     userInfo: null
+  },
+  Base(opts) {
+    InitPage.InitPage(opts)
   }
+
+
 })

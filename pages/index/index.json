@@ -1,5 +1,6 @@
 {
   "usingComponents": {
-    "custom-audio": "../../components/custom-audio/custom-audio"
+    "custom-audio": "../../components/custom-audio/custom-audio",
+    "custom-phoneCode": "../../components/custom-phoneCode/custom-phoneCode"
     }
 }

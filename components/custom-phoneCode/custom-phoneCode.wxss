@@ -1,0 +1,38 @@
+ .myPhoneCode,.myPhoneCode view,.basicInput{
+  box-sizing: border-box;
+}
+.myPhoneCode{
+  width:80%;
+  margin:0 auto;
+}
+.group{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width:100%;
+  margin-bottom:20rpx;
+}
+.basicInput{
+  display: block;
+  flex:1;
+  height:68rpx;
+  font-size:24rpx;
+  color:#000;
+  border:1px solid #d9d9d9;
+  padding:0 10rpx;
+}
+.codeInput{
+  border-right:none;
+}
+.code{
+  width:164rpx;
+  background:#f5821e;
+  border-radius: 10rpx;
+  border-bottom-left-radius: 0;
+  border-top-left-radius: 0;
+  text-align: center;
+  height:68rpx;
+  line-height:68rpx;
+  font-size:22rpx;
+  color:#fff;
+} 

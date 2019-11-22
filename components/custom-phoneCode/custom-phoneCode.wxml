@@ -1,0 +1,12 @@
+<custom-phoneCode>
+   <view class="myPhoneCode">
+      <view class="group"> 
+        <input class="basicInput" bindinput="bindInput" data-type="phone"  placeholder="请输入手机号" value="{{form.phone}}" type="number" placeholder-style="color:#d9d9d9;font-size:20rpx;"/>
+      </view>
+      <view class="group"> 
+        <input class="basicInput codeInput" bindinput="bindInput" data-type="code" value="{{form.code}}" placeholder="请输入验证码" placeholder-style="color:#d9d9d9;font-size:20rpx;"/>
+        <view bindtap="sendPhoneCode" class="code">{{code.countDown}}</view>
+      </view>
+      
+   </view>
+</custom-phoneCode>

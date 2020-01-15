@@ -1,5 +1,9 @@
 const app = getApp()
-app.Base({
+import { testReq, testReqTwo } from '../../utils/reqList.js'
+//const Page = require('../../utils/resetPage.js').resetPage
+// const regeneratorRuntime = require('../../lib/regenerator-runtime/runtime')
+
+Page({
 
   /**
    * 页面的初始数据
@@ -12,7 +16,7 @@ app.Base({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-      console.log('HOME >>>>>');
+      
   },
 
   /**
@@ -26,7 +30,30 @@ app.Base({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    console.log('HOME >>>>>');
+    // console.log('HOME >>>>>');
+    testReq().then((data)=>{
+      console.log(data)
+    });
+    testReqTwo().then((data) => {
+      console.log(data)
+    })
+    testReq().then((data) => {
+      console.log(data)
+    });
+    testReqTwo().then((data) => {
+      console.log(data)
+    })
+
+
+    setTimeout(()=>{
+      testReq().then((data) => {
+        console.log(data)
+      });
+      testReqTwo().then((data) => {
+        console.log(data)
+      })
+    },5000)
+
   },
 
   /**

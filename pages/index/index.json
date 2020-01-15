@@ -1,6 +1,8 @@
 {
+  "enablePullDownRefresh": true,
   "usingComponents": {
     "custom-audio": "../../components/custom-audio/custom-audio",
-    "custom-phoneCode": "../../components/custom-phoneCode/custom-phoneCode"
-    }
+    "custom-phoneCode": "../../components/custom-phoneCode/custom-phoneCode",
+    "custom-loadmore": "../../components/custom-loadmore/custom-loadmore"
+  }
 }

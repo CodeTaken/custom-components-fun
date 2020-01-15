@@ -1,5 +1,7 @@
 // pages/home/home.js
-Page({
+const app = getApp()
+var loadMoreView, page
+app.Base({
 
   /**
    * 页面的初始数据
@@ -10,14 +12,21 @@ Page({
       url:'',
       name:'',
       palyStatus:""
-    }
+    },
+    loadImg:'../../images/loading.png',
+
+    hasMoreData: true,
+    isRefreshing: false,
+    isLoadingMoreData: false
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    
+    loadMoreView = this.selectComponent('#loadMoreView');
+    console.log('page');
   },
 
   /**
@@ -71,14 +80,33 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
+    console.log('监听用户下拉动作');
+    if (this.data.isRefreshing || this.data.isLoadingMoreData) {
+      return
+    }
+    this.setData({
+      isRefreshing: true,
+      hasMoreData: true
+    })
 
+    setTimeout(()=>{
+      this.setData({
+        isRefreshing: false,
+        hasMoreData: false
+      })
+      wx.stopPullDownRefresh()
+    },2000)
+
+    //this.requestData()//数据请求
+    
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-
+    console.log('onReachBottom');
+    loadMoreView._loadMore()
   },
 
   /**
@@ -86,5 +114,57 @@ Page({
    */
   onShareAppMessage: function () {
 
-  }
+  },
+  loadMore(){
+    var that = this
+    console.log('loadMore');
+    setTimeout(()=>{
+      let items=[{
+        title:'第一个',
+      },{
+          title: '第2个',
+      },{
+          title: '第3个',
+      },]
+      that.setData({
+        items: items,
+        //selectedView: viewType
+      })
+    },1000)
+
+    // http.get({
+    //   url: `/${viewType}/list/${page}/json`,
+    //   showLoading: showLoading,
+    //   success: (res) => {
+    //     var items = that.data.items
+    //     if (page == 0) {
+    //       items = res.datas
+    //       wx.stopPullDownRefresh()
+    //     } else {
+    //       items = items.concat(res.datas)
+    //     }
+    //     that.setData({
+    //       items: items,
+    //       selectedView: viewType
+    //     })
+    //     loadMoreView.loadMoreComplete(res)
+    //   },
+    //   fail: () => {
+    //     if (page != 0) {
+    //       loadMoreView.loadMoreFail()
+    //     }
+    //   }
+    // })
+  },
+  loadMoreListener: function (e) {
+    page += 1
+    this.loadData(this.data.selectedView, false)
+  },
+  clickLoadMore: function (e) {
+    console.log('click clickLoadMore');
+    this.loadData(this.data.selectedView, false)
+  },
 })
+
+
+

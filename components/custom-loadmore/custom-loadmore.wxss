@@ -1,0 +1,27 @@
+.custom-loadmore {
+   height: 35px;
+   width: 100%;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+ }
+ .custom-loadmore text{
+   font-size:22rpx;
+   color: #000;
+ }
+ .icon{
+   width: 26px;
+   height: 26px;
+   margin-right:16rpx;
+ }
+ .active {
+   animation: weuiLoading 0.6s steps(12, end) infinite;
+ }
+ @keyframes weuiLoading {
+   0% {
+     transform: rotate3d(0, 0, 1, 0deg);
+   }
+   100% {
+     transform: rotate3d(0, 0, 1, 360deg);
+   }
+ }

@@ -14,6 +14,19 @@ const formatNumber = n => {
   return n[1] ? n : '0' + n
 }
 
+
+
+
+const handleTimeOut = (data)=>{
+  console.log(data);
+  console.log('请求报错或超时----handle request error！');
+}
+
+
+
+
+
+
 module.exports = {
-  formatTime: formatTime
+  handleTimeOut
 }

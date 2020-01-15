@@ -1,0 +1,6 @@
+<custom-loadmore>
+  <view class="custom-loadmore" hidden='{{!showThis}}' bindtap='_clickLoadMore'>
+      <image class="icon {{showIcon?'active':''}}" src='{{loadImg}}' hidden='{{!showIcon}}'/>
+      <text>{{text}}</text>
+  </view>
+</custom-loadmore>
